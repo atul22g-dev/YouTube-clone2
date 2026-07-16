@@ -21,9 +21,6 @@ function Sidebar() {
         <div className='flex flex-col gap-y-6 fixed z-20' >
           {
             categories.map((e) => {
-
-
-
               if (sidebarExtended) {
                 return (
                   <button onClick={() => {
@@ -33,7 +30,7 @@ function Sidebar() {
 
                     }
                     else {
-                      pageRoute(`/feed/${e.name}`)
+                      pageRoute(`/feed/${e.name} hindi`)
 
                     }
                   }} key={e.id}>
@@ -56,7 +53,7 @@ function Sidebar() {
 
                     }
                     else {
-                      pageRoute(`/feed/${e.name}`)
+                      pageRoute(`/feed/${e.name} hindi`)
 
                     }
                   }} key={e.id}>
@@ -89,6 +86,7 @@ function Sidebar() {
         </div>
         <div className=' flex flex-col gap-y-6' >
           {
+            // eslint-disable-next-line array-callback-return
             categories.map((e) => {
               if (sidebarExtended) {
 

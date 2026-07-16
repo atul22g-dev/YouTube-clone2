@@ -12,7 +12,6 @@ function ChannelDetails() {
   const { sidebarExtend } = useSelector((state) => state.category)
   const { channelDetails } = useSelector((state) => state.channel)
   const { channelVideos } = useSelector((state) => state.channel)
-  var aDay = 24 * 60 * 60 * 1000;
   // console.log(channelDetails.snippet)
   useEffect(() => {
     dispatch(getChannelVideos(`search?channelId=${id}&part=snippet&order=date`))
@@ -41,10 +40,10 @@ function ChannelDetails() {
           <h4 className='text-[16px] text-[#585858] font-bold tracking-wider'>VIDEOS</h4>
           <div className='mt-3 flex flex-wrap gap-x-5 gap-y-3'>
             {
-              channelVideos.map((e, index) => {
+              channelVideos?.map((e, index) => {
                 return (
 
-                  <VideoCard key={index + 1} thumbnail={e.snippet?.thumbnails?.medium?.url} width="210px" title={e.snippet.title} channel={e.snippet.channelTitle} on={timeSince(new Date(Date.parse(e.snippet.publishedAt) - aDay))} channelId={e.snippet.channelId} videoId={e.id.videoId} />
+                  <VideoCard key={index + 1} thumbnail={e?.snippet?.thumbnails?.medium?.url} width="210px" title={e?.snippet?.title} channel={e?.snippet?.channelTitle} on={timeSince(e?.snippet?.publishedAt)} channelId={e?.snippet?.channelId} videoId={e?.id?.videoId} />
                 )
               })
             }

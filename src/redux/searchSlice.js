@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { options } from "../utils/Fetch";
+import { createOptions } from "../utils/Fetch";
 const initialState = {
   searchResults: [],
   isLoading: false,
@@ -9,7 +9,7 @@ const base_url = "https://youtube-v31.p.rapidapi.com";
 
 export const searchById = createAsyncThunk("redux/searchById", async (url) => {
   try {
-    const { data } = await axios.get(`${base_url}/${url}`, options);
+    const { data } = await axios.get(`${base_url}/${url}`, createOptions());
     return data.items;
   } catch (error) {
     // console.log("error in searchById thunk");

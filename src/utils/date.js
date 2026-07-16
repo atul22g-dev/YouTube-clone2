@@ -1,5 +1,6 @@
 function timeSince(date) {
-  var seconds = Math.floor((new Date() - date) / 1000);
+  if (!date || isNaN(new Date(date).getTime())) return "";
+  var seconds = Math.floor((new Date() - new Date(date)) / 1000);
 
   var interval = seconds / 31536000;
 
@@ -22,6 +23,6 @@ function timeSince(date) {
   if (interval > 1) {
     return Math.floor(interval) + " minute ago";
   }
-  return Math.floor(seconds) + " seconda ago";
+  return Math.floor(seconds) + " seconds ago";
 }
 export default timeSince;

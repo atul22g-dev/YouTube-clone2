@@ -27,7 +27,6 @@ function VideoDetails() {
   const { id } = useParams()
   const { videoDetails } = useSelector((state) => state.video)
   const { relatedVideos } = useSelector((state) => state.video)
-  var aDay = 24 * 60 * 60 * 1000;
   const pageRoute = useNavigate()
   useEffect(() => {
     dispatch(getVideoDetails(`videos?part=snippet,statistics&id=${id}`))
@@ -40,7 +39,7 @@ function VideoDetails() {
 
       <div className={`pl-0  ${sidebarExtend ? "sm:pl-[180px]" : "sm:pl-[70px]"} pt-20 ml-4 lg:flex lg:gap-x-7`}>
         <div className='w-[96%] lg:max-w-[850px] h-[240px] sm:h-[320px] lg:h-[430px] container'>
-          <ReactPlayer width="100%" height="100%" className='react-player' url={`https://www.youtube.com/watch?v=${id}`} controls />
+          <ReactPlayer width="100%" height="100%" className='react-player' url={`https://www.youtube.com/watch?v=${id}`} controls config={{ youtube: { playerVars: { origin: window.location.origin, rel: 0, modestbranding: 1 } } }} />
           <div>
             <div className='flex gap-x-1'>
 
@@ -76,7 +75,7 @@ function VideoDetails() {
           {
             relatedVideos?.map((e, index) => {
               return (
-                <Video key={index + 2} thumbnail={e.snippet?.thumbnails?.medium?.url} width="210px" title={e.snippet.title} channel={e.snippet.channelTitle} on={timeSince(new Date(Date.parse(e.snippet.publishedAt) - aDay))} channelId={e.snippet.channelId} videoId={e.id.videoId} />
+                <Video key={index + 2} thumbnail={e?.snippet?.thumbnails?.medium?.url} width="210px" title={e?.snippet?.title} channel={e?.snippet?.channelTitle} on={timeSince(e?.snippet?.publishedAt)} channelId={e?.snippet?.channelId} videoId={e?.id?.videoId} />
               )
             })
           }

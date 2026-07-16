@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { options } from "../utils/Fetch";
+import { createOptions } from "../utils/Fetch";
 import axios from "axios";
 const base_url = "https://youtube-v31.p.rapidapi.com";
 
@@ -13,7 +13,7 @@ export const getCategoryVideos = createAsyncThunk(
   "redux/categorySlice",
   async (url) => {
     try {
-      const { data } = await axios.get(`${base_url}/${url}`, options);
+      const { data } = await axios.get(`${base_url}/${url}`, createOptions());
       return data.items;
     } catch (error) {
       // console.log(error);

@@ -14,7 +14,6 @@ function Feed() {
     dispatch(getCategoryVideos(`search?part=snippet&q=${id ? id : "Coding development"}`))
     document.title = `${id ? id + "- Youtube" : "Home - Youtube"}`
   }, [id])
-  var aDay = 24 * 60 * 60 * 1000;
   return (
     <>
       {/* <Sidebar /> */}
@@ -25,7 +24,7 @@ function Feed() {
           categoryVideos?.map((e, index) => {
             return (
               <div key={index} style={{ marginTop: index === 0 ? "0px" : "0px" }}>
-                <VideoCard key={index} title={e.snippet.title} thumbnail={e.snippet?.thumbnails?.medium?.url} on={timeSince(new Date(Date.parse(e.snippet.publishedAt) - aDay))} channel={e.snippet.channelTitle} channelId={e.snippet.channelId} videoId={e.id.videoId} />
+                <VideoCard key={index} title={e?.snippet?.title} thumbnail={e?.snippet?.thumbnails?.medium?.url} on={timeSince(e?.snippet?.publishedAt)} channel={e?.snippet?.channelTitle} channelId={e?.snippet?.channelId} videoId={e?.id?.videoId} />
               </div>
             )
           })
