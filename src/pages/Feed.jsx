@@ -13,7 +13,7 @@ function Feed() {
   useEffect(() => {
     dispatch(getCategoryVideos(`search?part=snippet&q=${id ? id : "Coding development"}`))
     document.title = `${id ? id + "- Youtube" : "Home - Youtube"}`
-  }, [id])
+  }, [dispatch, id])
   return (
     <>
       {/* <Sidebar /> */}

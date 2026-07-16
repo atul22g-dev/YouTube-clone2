@@ -31,7 +31,7 @@ function VideoDetails() {
   useEffect(() => {
     dispatch(getVideoDetails(`videos?part=snippet,statistics&id=${id}`))
     dispatch(getRelatedVideos(`search?part=snippet&relatedToVideoId=${id}&type=video`))
-  }, [id])
+  }, [dispatch, id])
 
   return (
     <>
